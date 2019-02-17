@@ -1,0 +1,116 @@
+<view style='background-color:#fff'>
+  <navigator url="/pages/address-picker/address-picker" class="flex-row address-picker">
+    <block wx:if="{{address}}">
+      <view class="flex-grow-1">
+        <view class="flex-row" style="margin-bottom: 20rpx">
+          <view class="flex-grow-1">联系人：{{address.name}}</view>
+          <view class="flex-grow-0">{{address.mobile}}</view>
+        </view>
+        <view style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis">联系地址：{{address.province}}{{address.city}}{{address.district}}{{address.detail}}</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="flex-grow-1">
+        <view style="color:#ff4544">请选择联系方式</view>
+      </view>
+    </block>
+    <view class="flex-grow-0 flex-y-center">
+      <image style="width: 12rpx; height: 22rpx;margin-left: 24rpx" src="/images/icon-jiantou-r.png" />
+    </view>
+  </navigator>
+
+  <view style='padding:0 20rpx'>
+    <view class="flex-row" style='border-bottom: solid #f0f0f0 0.5px;wxcs_style_border-bottom: solid #f0f0f0 1rpx;'>
+
+      <view class='flex-grow-0'>
+        <image src='{{order.header_url}}' mode='aspectFill' style='width: 100rpx;height: 100rpx;'></image>
+      </view>
+      <view class="flex-grow-1 flex-col" style='padding: 0 9px;wxcs_style_padding: 0 20rpx;'>
+        <view class="flex-grow-1">
+          <view class="goods-name">{{order.p_name}}</view>
+          <view class="attr-list">
+            <view class="attr-item">
+              等级:{{order.level_name}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="flex flex-row flex-y-center border-bottom" style='background-color:#fff;padding:0 24rpx;height:90rpx;border-bottom: solid 0.5px #f0f0f0;'>
+      <view class="flex-grow-1">摄影类型</view>
+      <view class="flex-grow-0 flex-row">
+        {{order.r_name}}
+      </view>
+    </view>
+    <view class="flex flex-row flex-y-center border-bottom" style='background-color:#fff;padding:0 24rpx;height:90rpx;border-bottom: solid 0.5px #f0f0f0;'>
+      <view class="flex-grow-1">预定时间</view>
+      <view class="flex-grow-0 flex-row">
+   {{order.datetime}}
+      </view>
+    </view>
+
+    <view class="flex flex-row flex-y-center border-bottom" style='background-color:#fff;padding:0 24rpx;height:90rpx;border-bottom: solid 0.5px #f0f0f0;'>
+      <view class="flex-grow-1">拍摄地点</view>
+      <view class="flex-grow-0 flex-row">
+        {{order.address}}
+      </view>
+    </view>
+
+    <!--选择优惠券-->
+        <view bindtap="showCouponPicker" class="flex-row flex-y-center border-bottom" style="background: #fff;padding: 0 24rpx;height: 90rpx;">
+            <view class="flex-grow-1">优惠券</view>
+            <view class="flex-grow-0">
+                <view wx:if="{{!coupon_list||coupon_list.length==0}}" style="color: #888">目前无可用优惠券</view>
+                <block wx:else>
+                    <view wx:if="{{picker_coupon}}" style="color: #ff4544">-{{picker_coupon.sub_price}}元</view>
+                    <view wx:else style="color: #ff4544">有{{coupon_list.length}}张优惠券可以使用</view>
+                </block>
+            </view>
+            <view class="flex-grow-0">
+                <image src="/images/icon-jiantou-r.png" style="width: 12rpx;height: 22rpx;margin-left: 12rpx"></image>
+            </view>
+        </view>
+  </view>
+<view class="coupon-picker" wx:if="{{show_coupon_picker}}">
+    <scroll-view class="coupon-list" scroll-y="true" style="height: 100%">
+        <view style="color: #888;font-size: 9pt;margin-bottom: 20rpx;line-height: 1.35">
+            注：优惠券只能抵消商品金额，不能抵消运费，商品金额最多优惠到0.01元
+        </view>
+        <view bindtap="pickCoupon" data-index="-1" style="height: 80rpx;margin-bottom: 24rpx;color: #888;border: 1rpx solid #e3e3e3;border-radius: 10rpx" class="flex-y-center flex-x-center">不使用优惠券
+        </view>
+        <view bindtap="pickCoupon" data-index="{{index}}" class="coupon-item coupon-status-{{item.status}} {{picker_coupon&&(item.user_coupon_id==picker_coupon.user_coupon_id)?'active':''}}" wx:for="{{coupon_list}}">
+            <image class="coupon-bg" src="/images/img-coupon-bg-{{item.status==0?0:1}}.png"></image>
+            <image wx:if="{{item.status!=0}}" class="coupon-status-icon" src="/images/img-coupon-status-icon-{{item.status}}.png"></image>
+            <view class="flex-row" style="height: 100%;overflow: hidden">
+                <view class="flex-grow-0 flex-col flex-y-center flex-x-center coupon-left">
+                    <view class="flex-row flex-y-bottom">
+                        <view style="font-size: 9pt">￥</view>
+                        <view style="font-size: {{item.sub_price.length>4?'13':'19'}}pt;line-height: .9">
+                            {{item.sub_price}}
+                        </view>
+                    </view>
+                    <view style="font-size: 8pt;margin-top: 10rpx">{{item.min_price_desc}}</view>
+                </view>
+                <view class="flex-grow-1 flex-y-center coupon-right">
+                    <view style="width: 100%">
+                        <view class="flex-row flex-y-center mb-10">
+                            <view class="flex-grow-1" style="font-size: 13pt;font-weight: bold">{{item.event_desc}}
+                            </view>
+                            <view class="flex-grow-0" style="font-size: 9pt"></view>
+                        </view>
+                        <view style="font-size: 8pt;color: #888">{{item.begin_time}} ~ {{item.end_time}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+</view>
+
+
+</view>
+<view class='pay-bar'>
+  <view style='font-size: 12pt;padding:0 20rpx'>金额：</view>
+  <view style='color: #1BB4FD;font-size: 21pt;'>￥ {{pay_price}}</view>
+  <view style='position: absolute;right: 0;width: 100px;text-align: center;background-color: #1BB4FD;color: white;font-size: 12pt;' bindtap='submit'>立即付款</view>
+</view>

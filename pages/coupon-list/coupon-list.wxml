@@ -1,0 +1,41 @@
+<!--pages/coupon-list/coupon-list.wxml-->
+<view class='info'>
+    <view class='info-list' style='width:100%;'>
+        <block wx:for='{{coupon_list}}' wx:for-item="coupon" wx:for-index="index" wx:key="id">
+            <block wx:if='{{coupon.discount_type == 2}}'>
+                <view class='info-one'>
+                    <image wx:if='{{coupon.is_receive == 0}}' src='/images/icon-coupon-enabled.png'></image>
+                    <image wx:if='{{coupon.is_receive == 1}}' src='/images/icon-coupon-disabled.png'></image>
+                    <view class='info-content flex-row flex-x-center flex-y-center'>
+                        <view class='flex-grow-0'>
+                            <view class='flex-row flex-y-bottom'>
+                                <view class='flex-grow-0'>￥</view>
+                                <view class='flex-grow-1' style='font-size:23pt;'>{{coupon.sub_price}}</view>
+                            </view>
+                        </view>
+                        <view class='flex-grow-1' style='font-size:11pt'>
+                            <view style='margin-left:16rpx;'>
+                                <view style='margin-bottom:4rpx;'>优惠券</view>
+                                <view>满{{coupon.min_price}}可用</view>
+                            </view>
+                        </view>
+                        <view class='flex-grow-0'>
+                            <view wx:if="{{coupon.is_receive == 0}}" class='flex-x-center flex-y-center info-btn' style='color:#ff4544;' bindtap='receive' data-index='{{coupon.id}}'>立即领取</view>
+                            <view wx:if="{{coupon.is_receive == 1}}" class='flex-x-center flex-y-center info-btn' style='color:#999;'>已领取</view>
+                        </view>
+                    </view>
+                    <view class='info-footer'>
+                        <view class='info-day' wx:if='{{coupon.expire_type == 2}}'>有效日期：{{coupon.begintime}}-{{coupon.endtime}}</view>
+                        <view class='info-day' wx:if="{{coupon.expire_type == 1}}">有效日期：领取{{coupon.expire_day}}天内有效</view>
+                       
+                    </view>
+                </view>
+            </block>
+        </block>
+    </view>
+    <view class='flex-x-center' wx:if='{{coupon_list.length<=0}}'>
+        <text style='margin-top:50rpx;'>暂无优惠券</text>
+    </view>
+</view>
+
+<include src="/commons/get-coupon/get-coupon.wxml" />

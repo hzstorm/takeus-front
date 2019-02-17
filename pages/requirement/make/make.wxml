@@ -1,0 +1,159 @@
+<view class='page input js_show'>
+
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}" hidden='{{hide}}'>
+    <block wx:if="{{level_list.length>0}}" wx:for="{{level_list}}" wx:for-index='level_index'>
+      <view class="tab-item {{currentTab==level_index?'active':''}}" data-current="{{level_index}}" data-cat_id="{{item.id}}" bindtap="bindLevelChange">{{item.name}}</view>
+    </block>
+  </scroll-view>
+  <form class='page__bd' hidden='{{hide}}' bindsubmit='next'  report-submit='true'>
+    <view style='width:90%;margin:0 auto'>
+      <view class='weui-cells weui-cells_form' style='overflow: hidden;background-color: white;padding: 15px;border-radius: 10px;'>
+        <view class='weui-cells__title'>在这里拍摄</view>
+        <view class='weui-cell' style='font-size:13pt;'>
+          <view class='weui-cell__hd'>
+            <image src='/images/dingwei_blue.png' style='width:20px;margin-right:5px;display:block;height:20px'></image>
+          </view>
+          <view class='weui-cell__bd' style='color:#333333'>
+            <input placeholder='选择您的拍摄位置' placeholder-style='font-size:13pt' bindtap='chooseLocation' value='{{location}}' name='localtion'>
+            </input>
+          </view>
+        </view>
+        <view class='weui-cell' style='font-size: 13pt;border-top: solid #f0f0f0 0.5px;wxcs_style_border-top: solid #f0f0f0 1rpx;margin-top: 17rpx;'>
+
+          <view class='weui-cell__hd'>
+            <image src='/images/dingwei_blue.png' style='width:20px;margin-right:5px;display:block;height:20px'></image>
+
+          </view>
+          <view class='weui-cell__bd' style='color:#333333'>
+            <input placeholder='详细地址' placeholder-style='font-size:13pt' name="detail">
+            </input>
+          </view>
+
+        </view>
+
+
+
+
+        <view style='margin-top: 22px;font-size: 13pt;'>
+          <view class='weui-cells__title'>拍摄类型</view>
+          <view class='weui-cell'>
+            <view class='weui-cell__hd'>
+              <image src='/images/dian_blue.png' style='width:20px;margin-right:5px;display:block;height:20px'></image>
+            </view>
+            <view class='weui-cell__bd' style='color:#333333'>
+              <picker bindchange="bindTypeChange" value="{{type_index}}" range="{{type_list}}" range-key='name'>
+                <view class="picker">{{type_list[type_index]['name']}} </view>
+              </picker>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+
+
+
+
+    <view style='width:90%;margin:0 auto'>
+
+      <view class='weui-cells weui-cells_form' style='overflow: hidden;background-color: white;padding: 15px;border-radius: 10px;'>
+        <view style='text-align:center'>拍摄时间</view>
+        <view class='weui-cell'>
+          <view class='weui-cell__hd'>
+            <label class='weui-label'>日期选择</label>
+          </view>
+          <view class='weui-cell__bd'>
+
+            <picker class='weui-input' mode="date" value="{{date}}" start="{{start}}" end="{{end}}" bindchange="bindDateChange">
+              <view class="picker">{{date}} </view>
+            </picker>
+          </view>
+        </view>
+        <view class='weui-cell'>
+          <view class='weui-cell__hd'>
+            <label class='weui-label'>时间选择</label>
+          </view>
+          <view class='weui-cell__bd'>
+
+            <picker class='weui-input' mode="time" value="{{time}}" start="00:00" bindchange="bindTimeChange">
+              <view class="picker">{{time}} </view>
+            </picker>
+          </view>
+        </view>
+
+
+
+      </view>
+    </view>
+    <view class="page__bd page__bd_spacing" style='width: 80%;margin: 0 auto;margin-top: 30px;'>
+      <button class="weui-btn" form-type='submit' type="primary" style='background-color: #1BB4FD;'>继续选择摄影师</button>
+    </view>
+  </form>
+
+
+
+
+
+
+  <view class='page__bd'>
+    <view class='weui-cells'>
+      <block wx:if="{{photographer_list.length}}" wx:for="{{photographer_list}}">
+
+
+        <navigator class='weui-cell weui-cell_access' style='margin-bottom:10rpx' url='../detail/detail?id={{item.id}}' open-type='navigate'>
+
+          <view class='weui-cell__hd' style='width: 100rpx;height: 100rpx;'>
+            <image src='{{item.header_url}}' mode='heightFix' class='weui-media-box__thumb'></image>
+          </view>
+          <view class='weui-cell__bd'>
+            <view style='padding: 20rpx;'>
+              <view style='font-size: 13pt;'>
+                <text> {{item.name}}</text>
+                <text style='font-weight: 400;font-size: 9pt;color: #1BB4FD;margin-left: 10rpx;'> {{item.distance}}KM</text>
+              </view>
+              <view style='color: #c0c0c0;font-size: 9pt;'>{{item.details?item.details:'暂无简介'}}</view>
+              <!-- <text wx:if='{{item.labels.length>0}}' wx:for="{{item.labels}}" wx:for-item="label" style="font-size: 9pt;color: white;background-color: #1BB4FD;padding: 0 5px;wxcs_style_padding: 0 10rpx;border-radius: 37rpx;">{{label.content}}</text> -->
+            </view>
+          </view>
+          <view class='weui-cell__ft'>
+            <text style='font-size: 9pt;color: white;background-color: #1BB4FD;padding: 0 10px;wxcs_style_padding: 0 20rpx;border-radius: 28rpx;'>{{item.level}}</text>
+          </view>
+        </navigator>
+
+
+      </block>
+    </view>
+    <view style='text-align: center;margin-top: 10px;font-size: 8pt;color: #807F7D;' wx:if="{{sum>0}}">平台还有{{sum}}位摄影师服务中</view>
+    <!-- 
+    <view class='weui-grids' style='width: 95%;margin: 0 auto;border:none'>
+
+      <block wx:if="{{photographer_list.length}}" wx:for="{{photographer_list}}">
+        <navigator url='../detail/detail?id={{item.id}}' open-type='navigate' class="weui-grid" style='width: 50%; padding:  0;border:none;margin-top:10rpx'>
+          <view style='width: 95%;background-color: white;margin: 0 auto;'>
+            <view class='weui-grid__icon' style='width: 100%;height: 133px;position: relative;'>
+              <image src='{{item.header_url}}' mode='heightFix' class='weui-media-box__thumb'></image>
+              <view style='position: absolute;top: 0;right: 0;background-color: #1BB4FD;padding: 0 7px;wxcs_style_padding: 0 15rpx;font-size: 9pt;border-bottom-left-radius: 10rpx;'>{{item.distance}}KM</view>
+            </view>
+
+            <view style='padding: 20rpx;'>
+              <view style='font-size: 13pt;'> {{item.name}}</view>
+              <view style='color: #c0c0c0;'>{{item.details}}</view>
+              <text wx:if='{{item.labels.length>0}}' wx:for="{{item.labels}}" wx:for-item="label" style="font-size: 9pt;color: white;background-color: #1BB4FD;padding: 0 5px;wxcs_style_padding: 0 10rpx;border-radius: 37rpx;">{{label.content}}</text>
+            </view>
+
+          </view>
+
+
+        </navigator>
+
+
+      </block>
+      <view style='text-align: center;' hidden='{{hide_none}}'>很遗憾暂时没有摄影师满足您的需求哦！</view>
+    </view> -->
+
+
+
+  </view>
+
+</view>

@@ -1,0 +1,25 @@
+<view class="info">
+   
+  <view style="margin-top:10rpx;">
+    <block wx:if="{{record_list.length==0}}">
+      <view class="info-no">暂无信息</view>
+    </block>
+    <block wx:else>
+      <block wx:for="{{record_list}}">
+        <view class="info-content">
+          <view class="info-label flex-row">
+            <view class="info-left">
+              <view class="info-up">{{item.detail}}</view>
+              <view class="info-down">{{item.addtime}}</view>
+            </view>
+            <view class="info-right">
+             
+             <text wx:if="{{item.status==0}}">-</text><text wx:else>+</text>   {{item.price}}
+             
+            </view>
+          </view>
+        </view>
+      </block>
+    </block>
+  </view>
+</view>

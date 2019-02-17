@@ -1,0 +1,93 @@
+<view class="body after-navber">
+
+  <view class="search-block" hidden='true'>
+    <navigator>
+      <image src="/images/icon-search.png" />
+      <text>搜点什么</text>
+    </navigator>
+  </view>
+
+  <view class='page__hd'>
+    <view class='weui-cells'>
+      <!-- <block wx:for="{{top_list}}">
+
+        <block wx:if="{{item.top_1}}">
+
+          <view class='weui-cell'>
+            <view style='position: relative;margin-right: 10px;'>
+              <image src='/message/images/xj.png' style='width: 50px;display: block;height:50px'></image>
+            </view>
+            <view class='weui-cell__bd' bindtap='order'>
+              <view style='font-size: 13pt;'>下单消息</view>
+              <view style="font-size: 9pt;color: {{order_msg.count>0?'#1BB4FD':'#888888'}};">{{order_msg.detail}} </view>
+            </view>
+            <view class="weui-badge" wx:if="{{order_msg>0}}">{{order_msg.count}}</view>
+          </view>
+        </block>
+        <block wx:elseif="{{item.top_2}}">
+
+          <navigator class='weui-cell' style='border-bottom: solid #f0f0f0 0.5px;wxcs_style_border-bottom: solid #f0f0f0 1rpx;border-top: solid #f0f0f0 0.5px;wxcs_style_border-top: solid #f0f0f0 1rpx;' url='/pages/topic-list/topic-list'>
+            <view style='position: relative;margin-right: 10px;'>
+              <image src='/message/images/liwu.png' style='width: 50px;display: block;height:50px'></image>
+            </view>
+            <view class='weui-cell__bd'>
+              <view style='font-size: 13pt;'>消息列表</view>
+              <view style='font-size: 9pt;color: #888888;'>{{topic_msg.detail}} </view>
+            </view>
+          </navigator>
+        </block>
+
+        <block wx:elseif="{{item.top_3}}">
+          <navigator class='weui-cell' url='/pages/photographer/order/order?status=1'>
+            <view style='position: relative;margin-right: 10px;'>
+              <image src='/message/images/systz.png' style='width: 50px;display: block;height:50px'></image>
+            </view>
+            <view class='weui-cell__bd'>
+              <view style='font-size: 13pt;'>金额消息</view>
+              <view style='font-size: 9pt;color: #888888;'>{{money_msg.detail}} </view>
+            </view>
+          </navigator>
+
+        </block>
+
+
+
+
+      </block> -->
+
+     
+
+        <view class='weui-cell'>
+          <view style='position: relative;margin-right: 10px;'>
+            <image src='/images/photo_blue.png' style='width: 50px;display: block;height:50px'></image>
+                 <!-- <image src='/message/images/xj.png' style='width: 50px;display: block;height:50px'></image> -->
+          </view>
+          <view class='weui-cell__bd' bindtap='order'>
+            <view style='font-size: 13pt;'>下单消息</view>
+            <view style="font-size: 9pt;color: {{order_msg.count>0?'#1BB4FD':'#888888'}};">{{order_msg.detail}} </view>
+          </view>
+          <view class="weui-badge" wx:if="{{order_msg>0}}">{{order_msg.count}}</view>
+        </view>
+ 
+
+      <navigator class='weui-cell' style='border-bottom: solid #f0f0f0 0.5px;wxcs_style_border-bottom: solid #f0f0f0 1rpx;border-top: solid #f0f0f0 0.5px;wxcs_style_border-top: solid #f0f0f0 1rpx;' url='/pages/topic-list/topic-list'>
+        <view style='position: relative;margin-right: 10px;'>
+          <image src='/images/liwu_blue.png' style='width: 50px;display: block;height:50px'></image>
+        </view>
+        <view class='weui-cell__bd'>
+          <view style='font-size: 13pt;'>消息列表</view>
+          <view style='font-size: 9pt;color: #888888;'>{{topic_msg.detail}} </view>
+        </view>
+      </navigator>
+      <navigator class='weui-cell' url='/pages/photographer/order/order?status=1'>
+        <view style='position: relative;margin-right: 10px;'>
+          <image src='/images/msg_blue.png' style='width: 50px;display: block;height:50px'></image>
+        </view>
+        <view class='weui-cell__bd'>
+          <view style='font-size: 13pt;'>金额消息</view>
+          <view style='font-size: 9pt;color: #888888;'>{{money_msg.detail}} </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>

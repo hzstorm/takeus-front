@@ -1,0 +1,95 @@
+<view class="page {{__page_classes}}">
+  <include src="/commons/header/header" />
+  <view class="body after-navber">
+
+    <!-- 新订单提示 -->
+    <view bindtap="test" class="purchase1" wx:if="{{buy_user}}">
+      <navigator class="goods-item" url="{{buy_url}}">
+        <image class="purchase2" src="{{buy_avatar_url}}"></image>
+        <view class="purchase3">{{buy_user}}{{buy_type}}{{buy_address}}, {{buy_time}}前</view>
+      </navigator>
+    </view>
+
+    <view class='page__bd page__bd_spacing' hidden='true'>
+      <view class='weui-flex' style='background-color: white;padding: 10rpx;box-shadow: 0px 0px 10px 1px #888888;z-index: 999;border-bottom: solid #f0f0f0 1px;margin-bottom: 10px;'>
+        <view>
+          {{mylocation}}
+        </view>
+        <view class='weui-flex__item'>
+          <view class="search-block">
+            <navigator url="/pages/search/search">
+              <image src="/images/icon-search.png" />
+              <text>搜索摄影师</text>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+    <map style='width: 100%;height: 100vh;position: relative;' latitude='{{m_lat}}' longitude='{{m_lon}}' scale='10' markers='{{markers}}'>
+      <cover-view class='navibar'>
+        <cover-view class='small' bindtap='msg' style='position: relative;width: 87px;height: 60px;border-radius: 0;'>
+          <cover-view class='msg_count' wx:if="{{coupon_msg.is_read==0}}">{{msg_count}}</cover-view>
+          <cover-image src='/images/msg2_blue.png' style='width: 50px;height: 50px;margin: 0 auto;z-index:-999'></cover-image>
+        </cover-view>
+        <cover-view class='big' bindtap='addRequirement'>
+          <cover-image src='/images/add_white.png' style='width: 70rpx;height: 70rpx;margin: 0 auto;'></cover-image>
+          <cover-view style='color:white'>发布</cover-view>
+        </cover-view>
+        <cover-view class='small' bindtap='user'>
+          <cover-image src='/images/mine_blue.png' style='width: 50px;height: 50px;margin: 0 auto;'></cover-image>
+        </cover-view>
+      </cover-view>
+    </map>
+
+
+
+
+
+    <!-- 活动弹窗 -->
+    <view wx:if="{{act_modal_list && act_modal_list.length > 0}}">
+      <view class="act-modal {{item.show?'show':''}}" wx:for="{{act_modal_list}}">
+        <view class="act-modal-bg" bindtap="closeActModal"></view>
+        <view class="act-modal-pic flex-y-center flex-x-center">
+          <view>
+            <navigator bindtap="closeActModal" url="{{item.url}}" open-type="{{item.open_type}}">
+              <image src="{{item.pic_url}}" style="width: {{item.pic_width}}rpx;height: {{item.pic_height}}rpx;"></image>
+            </navigator>
+            <view class="act-modal-close flex-x-center" bindtap="closeActModal">
+              <image src="/images/icon-close4.png"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view>
+      <view class="act-modal {{openSetting?'show':''}}">
+        <view class="act-modal-bg" bindtap="closeActModal"></view>
+        <view class="act-modal-pic flex-y-center flex-x-center">
+          <view style='background-color: white;width: 450rpx;height: 315rpx;border-radius: 7rpx;'>
+            <view style='text-align: center;font-size: 14pt;color: #000;height: 50px;line-height: 50px;'>是否授权当前微信</view>
+            <view style='width: 85%;text-align: center;margin: 0 auto;color: #A5A5A5;margin-bottom: 64rpx;'>需要获取您的地理位置,请确认授权否则无法获取您的数据</view>
+            <view>
+              <button bindOpensetting='openSetting' style='color: #46C82A;font-size: 13pt;background-color: white;border-radius: 0;border-left: none;' open-type='openSetting'>确定</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+
+
+
+    <include src="/commons/get-coupon/get-coupon.wxml" />
+    <include src="/commons/float-icon/float-icon.wxml" />
+
+
+
+
+
+
+  </view>
+
+
+  <include src="/commons/footer/footer" />
+</view>

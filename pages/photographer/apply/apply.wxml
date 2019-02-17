@@ -1,0 +1,118 @@
+<view class='container'>
+  <view class='page input js_show'>
+    <form class='page__bd' bindsubmit='submit'>
+      <view style='text-align: center;padding-top: 10rpx;'>
+        <image src='/images/no_header.png' bindtap='uploadImg' style='width:200rpx;height:200rpx' wx:if="{{header_url==''}}"></image>
+        <image src='{{header_url}}' bindtap='uploadImg' style='width:200rpx;height:200rpx' wx:if="{{header_url!=''}}"></image>
+      </view>
+      <view class='weui-cells weui-cells_form'>
+        <view class='weui-cell'>
+          <view class='weui-cell__hd'>
+            <view class='weui-label'>姓名</view>
+          </view>
+          <view class='weui-cell__bd'>
+            <input class='weui-input' name="name" placeholder='请输入真实姓名'></input>
+          </view>
+        </view>
+        <view class='weui-cell'>
+          <view class='weui-cell__hd'>
+            <view class='weui-label'>级别选择</view>
+          </view>
+          <view class='weui-cell__bd'>
+            <view class='weui-input'>
+              <picker bindchange="bindLevelPicker" value="{{index}}" range="{{level_list}}" range-key='name'>
+                <view class="picker">{{level_list[index]['name']}} </view>
+              </picker>
+            </view>
+          </view>
+        </view>
+        <view class='weui-cell'>
+          <view class='weui-cell__hd'>
+            <view class='weui-label'>手机号</view>
+          </view>
+          <view class='weui-cell__bd'>
+            <input class='weui-input' name="mobile" type='number' placeholder='请输入常用手机号'></input>
+          </view>
+        </view>
+
+
+
+
+        <view class='weui-cell'>
+          <view class='weui-cell__hd'>
+            <view class='weui-label'>性别</view>
+          </view>
+          <view class='weui-cell__bd'>
+            <view class='weui-input'>
+              <radio-group class="radio-group" bindchange="radioChange">
+                <label class="radio">
+                  <radio value="0" checked="true" /> 男
+                </label>
+                <label class="radio">
+                  <radio value="1" /> 女
+                </label>
+              </radio-group>
+            </view>
+          </view>
+        </view>
+
+
+
+        <view class='weui-cells__title'>个人简介</view>
+        <view class='weui-cells weui-cells_form'>
+          <view class='weui-cell'>
+            <view class='weui-cell__bd'>
+              <textarea class='weui-textarea' name="details" placeholder='请介绍一下自己..'>
+
+              </textarea>
+              <view class='weui-textarea-counter'>
+                <text>请不要输入emoj表情</text>
+              </view>
+            </view>
+          </view>
+
+        </view>
+        <view class='weui-cell' style='margin-top: 10rpx;'>
+          <view class='weui-cell__hd'>
+            <view class='weui-label'>身份证</view>
+          </view>
+          <view class='weui-cell__bd'>
+
+            <image src='/images/add.png' style='width: 150rpx;height: 150rpx;border: solid #f0f0f0 0.5px;wxcs_style_border: solid #f0f0f0 1rpx;' wx:if="{{id_card==null}}" bindtap='uploadIdCard'></image>
+            <image src='{{id_card}}' style='width: 150rpx;height: 150rpx;border: solid #f0f0f0 0.5px;wxcs_style_border: solid #f0f0f0 1rpx;' wx:if="{{id_card!=null}}" bindtap='uploadIdCard'></image>
+          </view>
+        </view>
+        <view style='margin-top:10rpx'>
+
+
+          <view class='weui-cell__hd'>
+            <view class='weui-label'>上传作品</view>
+          </view>
+          <view class='weui-cell'>
+
+            <view class='weui-cell__bd'>
+              <image src='/images/add.png' style='width: 64px;height: 64px;border: solid #f0f0f0 0.5px;wxcs_style_border: solid #f0f0f0 0.5px;margin-right: 10rpx;' wx:if="{{product_list.length<9}}" bindtap='uploadProImg'></image>
+
+              <block wx:if="{{product_list.length>0}}">
+                <image src='{{item}}' wx:for="{{product_list}}" style='width: 64px;height: 64px;border: solid #f0f0f0 0.5px;wxcs_style_border: solid #f0f0f0 0.5px;margin-right: 10rpx;'></image>
+
+              </block>
+            </view>
+          </view>
+
+
+
+        </view>
+
+      </view>
+
+
+
+      <view class="page__bd page__bd_spacing" style='width: 80%;margin: 0 auto;margin-top: 30px;margin-bottom:100rpx'>
+        <button class="weui-btn" type="primary" form-type='submit'>提交</button>
+      </view>
+    </form>
+  </view>
+
+
+</view>

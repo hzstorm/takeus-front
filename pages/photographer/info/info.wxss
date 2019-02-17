@@ -1,0 +1,87 @@
+/* pages/requirement/submit/submit.wxss */
+
+.title {
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #1BB4FD;
+  text-align: center;
+}
+
+page {
+  background-color: white;
+}
+
+.key {
+  color: #1BB4FD;
+  width: 73px;
+  text-align-last: justify;
+}
+
+.info text {
+  color: #1BB4FD;
+}
+
+.val {
+  width: 76%;
+  padding: 0 20rpx;
+  word-break: break-all;
+}
+
+.bottom-line {
+  padding-bottom: 10px;
+  border-bottom: solid #f0f0f0 0.5px;
+  wxcs_style_border-bottom: solid #f0f0f0 1rpx;
+  margin-bottom: 10px;
+}
+
+.val text {
+  padding: 0 10px;
+  wxcs_style_padding: 0 20rpx;
+  background-color: #1BB4FD;
+  color: white;
+  border-radius: 6rpx;
+  margin-right: 10px;
+}
+
+.pay-bar {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  background-color: #f2f2f2;
+  height: 50px;
+  width: 100%;
+  line-height: 50px;
+}
+
+.act-modal.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.act-modal .act-modal-bg {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+button::after{
+  border: none;
+}
+.act-modal .act-modal-pic {
+    background: rgba(0, 0, 0, 0.25);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.act-modal .act-modal-close image {
+    width: 50rpx;
+    height: 50rpx;
+    margin-top: 50rpx;
+}

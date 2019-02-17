@@ -1,0 +1,69 @@
+<view class="page {{__page_classes}}">
+  <include src="/commons/header/header" />
+  <view class="body after-navber" hidden='true'>
+
+    <!-- 新订单提示 -->
+    <view bindtap="test" class="purchase1" wx:if="{{buy_user}}">
+      <navigator class="goods-item" url="{{buy_url}}">
+        <image class="purchase2" src="{{buy_avatar_url}}"></image>
+        <view class="purchase3">{{buy_user}}{{buy_type}}{{buy_address}}, {{buy_time}}前</view>
+      </navigator>
+    </view>
+
+   
+
+
+
+
+    <!-- 活动弹窗 -->
+    <view wx:if="{{act_modal_list && act_modal_list.length > 0}}">
+      <view class="act-modal {{item.show?'show':''}}" wx:for="{{act_modal_list}}">
+        <view class="act-modal-bg" bindtap="closeActModal"></view>
+        <view class="act-modal-pic flex-y-center flex-x-center">
+          <view>
+            <navigator bindtap="closeActModal" url="{{item.url}}" open-type="{{item.open_type}}">
+              <image src="{{item.pic_url}}" style="width: {{item.pic_width}}rpx;height: {{item.pic_height}}rpx;"></image>
+            </navigator>
+            <view class="act-modal-close flex-x-center" bindtap="closeActModal">
+              <image src="/images/icon-close4.png"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view>
+      <view class="act-modal {{openSetting?'show':''}}">
+        <view class="act-modal-bg" bindtap="closeActModal"></view>
+        <view class="act-modal-pic flex-y-center flex-x-center">
+          <view style='background-color: white;width: 450rpx;height: 315rpx;border-radius: 7rpx;'>
+            <view style='text-align: center;font-size: 14pt;color: #000;height: 50px;line-height: 50px;'>是否授权当前微信</view>
+            <view style='width: 85%;text-align: center;margin: 0 auto;color: #A5A5A5;margin-bottom: 64rpx;'>需要获取您的地理位置,请确认授权否则无法获取您的数据</view>
+            <view>
+              <button bindOpensetting='openSetting' style='color: #46C82A;font-size: 13pt;background-color: white;border-radius: 0;border-left: none;' open-type='openSetting'>确定</button>
+            </view>
+
+
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view>
+    <view class="act-modal show">
+      <view class="act-modal-bg" bindtap="closeActModal"></view>
+      <view class="act-modal-pic flex-y-center flex-x-center">
+        <view style='background-color: white;width: 450rpx;border-radius: 7rpx;'>
+          <view style='text-align: center;font-size: 14pt;color: #000;height: 50px;line-height: 50px;'>请选择身份</view>
+          <view style='width: 85%;text-align: center;margin: 0 auto;color: #A5A5A5;margin-bottom: 64rpx;'>
+            <view style='background-color: #CDCDCC;border-radius: 22px;height: 40px;line-height: 40px;color: white;margin-bottom: 16px;font-size: 15pt;' bindtap='chooseStatus' data-status='0'>我是用户</view>
+            <view style='background-color:#1BB4FD;border-radius: 22px;height: 40px;line-height: 40px;color: white;margin-bottom: 16px;font-size: 15pt;' bindtap='chooseStatus' data-status='1'>我是摄影师</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <include src="/commons/footer/footer" />
+</view>

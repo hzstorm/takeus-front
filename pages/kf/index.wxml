@@ -1,0 +1,12 @@
+<!--pages/kf/index.wxml-->
+ 
+<view style='text-align: center;margin-top: 10px;'>
+  <image src='{{service}}' mode='widthFix' bindtap="previewImage" style='width:200px'> </image>
+
+</view>
+
+
+
+<view style='margin-top: 50px;'>
+  <view bindtap='call' style='width: 50%;margin: 0 auto;background-color: #1BB4FD;text-align: center;color: white;height: 40px;line-height: 40px;border-radius: 33px;'>电话客服</view>
+</view>

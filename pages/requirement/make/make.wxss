@@ -1,0 +1,109 @@
+/* pages/requirement/make/make.wxss */
+@import "/weui.wxss";
+
+.weui-label {
+  display: block;
+  width: 105px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+page {
+  font-size: 11pt;
+}
+
+.weui-cells {
+  font-size: 11pt;
+}
+
+ .page__bd view{
+          border:none
+ }
+
+.weui-media-box__hd {
+  margin-right: 0.8em;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.weui-cells::before{
+  border: none;
+
+}
+
+.tab-h {
+ height:90rpx;
+width:100%;
+box-sizing:border-box;
+overflow:hidden;
+line-height:80rpx;
+background:#fff;
+font-size:16px;
+white-space:nowrap;
+top:0;
+left:0;
+z-index:99;
+box-shadow:0 2px 10px 1px #c0c0c0;
+
+}
+
+.tab-item {
+  margin: 0 36rpx;
+  display: inline-block;
+}
+
+.tab-item.active {
+  color: #1BB4FD;
+  position: relative;
+ border-bottom:solid 2px #1BB4FD;
+
+}
+
+ 
+
+.item-ans {
+  width: 100%;
+  display: flex;
+  flex-grow: row no-wrap;
+  justify-content: space-between;
+  padding: 30rpx;
+  box-sizing: border-box;
+  height: 180rpx;
+  align-items: center;
+  border-bottom: 1px solid #f2f2f2;
+}
+.tab-content {
+  margin-top: 80rpx;
+}
+
+.scoll-h {
+  height: 100%;
+}
+.weui-cell__ft {
+ text-align:right;
+color:#999;
+padding-right:49rpx;
+font-size:12pt;
+padding-top:10rpx;
+
+}
+
+.weui-cell__ft:after {
+    content: " ";
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    border-width: 2px 2px 0 0;
+    border-color: #C8C8CD;
+    border-style: solid;
+    -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    position: relative;
+    top: -2px;
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+    right: 20px;
+}

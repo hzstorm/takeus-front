@@ -1,0 +1,135 @@
+<import src="../../wxParse/wxParse.wxml"></import>
+<view class="{{show_attr_picker||show||no_scroll?'no-scroll':''}}">
+  <view class="attr-picker" wx:if="{{show_attr_picker}}">
+    <view class="content-box">
+      <view class="flex-row" style="border-bottom: 1rpx solid #e3e3e3;padding: 24rpx 28rpx">
+        <view class="flex-grow-0">
+          <view class="goods-pic-box">
+            <image mode="aspectFill" src="{{photographer.header_url}}"></image>
+          </view>
+        </view>
+        <view class="flex-grow-1" style="padding: 0 24rpx">
+
+          <view style="color:#ff4544;margin-bottom: 12rpx;font-weight: bold">￥{{price}}</view>
+
+        </view>
+        <view class="flex-grow-0">
+          <view bindtap="hideAttrPicker" class="flex-x-center flex-y-center" style="width: 100rpx;height: 100rpx">
+            <image src="/images/icon-close.png" style="width: 30rpx;height: 30rpx"></image>
+          </view>
+        </view>
+      </view>
+      <scroll-view scrollY="true" style="max-height: 650rpx;">
+        <view style="padding: 24rpx 28rpx">
+          <!-- <view>
+            <view class="attr-group" wx:if="{{attr_group_list.length>0}}" wx:for="{{attr_group_list}}" wx:for-item="attr_group">
+              <view class="attr-group-name">{{attr_group.attr_group_name}}</view>
+              <view class="attr-list">
+                <text bindtap="attrClick" class="attr-item {{item.checked?'active':''}}" data-group-id="{{attr_group.attr_group_id}}" data-id="{{item.attr_id}}" wx:for="{{attr_group.attr_list}}">{{item.attr_name}}
+                                </text>
+              </view>
+            </view>
+          </view> -->
+          <view style="height: 0;border-bottom: 1rpx solid #e3e3e3;margin-bottom: 40rpx"></view>
+          <view style="padding-bottom: 40rpx">
+            <view class="flex-row flex-y-center mb-20">
+              <view class="flex-grow-1">
+                <view>服务时长：{{minutes_cur}}分钟</view>
+                <view>照片张数：{{number_cur}}张</view>
+              </view>
+              <view class="flex-grow-0">
+                <view class="flex-row number-input-box">
+                  <view bindtap="numberSub" class="flex-grow-0 flex-x-center flex-y-center number-btn number-sub {{form.number<=1?'disabled':''}}">-
+                  </view>
+                  <view class="flex-grow-0">
+                    <input bindblur="numberBlur" class="flex-grow-1 number-input" min="1" step="1" type="number" value="{{order_number}}"></input>
+                  </view>
+                  <view bindtap="numberAdd" class="flex-grow-0 flex-x-center flex-y-center number-btn number-add">+
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view style="padding-bottom: 120rpx">
+    <swiper autoplay="true" circular="true" class="goods-image-swiper" duration="300" indicatorDots="true" interval="5000">
+      <swiper-item>
+        <image class="goods-image" src="{{photographer.header_url}}"></image>
+      </swiper-item>
+    </swiper>
+
+
+    <view class="goods-info" style="background: #fff;padding:32rpx 24rpx;border-bottom: 1rpx solid #eee ">
+      <view style="font-weight: bold;margin-bottom: 24rpx;line-height: 1.7">{{photographer.name}}</view>
+
+    </view>
+    <view class="bg-white mb-20 flex-row check-list" wx:if="{{label_list.length>0}}">
+      <view class="check-item flex-y-center" wx:for="{{label_list}}">
+        <image src="/images/icon-check.png"></image>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+    <view class="mb-20" wx:else></view>
+    <view bindtap="showAttrPicker" class="flex-row flex-y-center" style="background: #fff;padding:0 24rpx;margin-bottom: 20rpx;height: 100rpx;" wx:if="{{quick!=1}}">
+      <view class="flex-grow-1 flex-row flex-y-center">
+        <text>选择</text>
+        <text style="margin-left: 40rpx;font-size: 9pt;color: #888888">规格</text>
+      </view>
+      <view class="flex-grow-0">
+        <image src="/images/icon-jiantou-r.png" style="width: 16rpx;height: 26rpx"></image>
+      </view>
+    </view>
+
+    <view class="tab-group">
+
+      <view class="tab-group-body" style='background-color: white;padding: 20rpx;'>
+
+        <view style='display:flex' class='info'>
+
+          <view class='key'>性别</view>
+          <text>：</text>
+          <view class="val">{{photographer.sex==1?'男':'女'}}</view>
+
+        </view>
+        <view style='display:flex' class='info'>
+
+          <view class='key'>地区</view>
+          <text>：</text>
+          <view class='val'>{{photographer.address}}</view>
+        </view>
+        <view style='display: flex;' class='info bottom-line'>
+          <view class='key'>个人简介</view>
+          <text>：</text>
+          <view class='val'>{{photographer.details}}</view>
+        </view>
+        <view style='display:flex' class='info'>
+          <view class='key'>个人标签</view>
+          <text>：</text>
+          <view class='val'>
+            <block wx:if='{{label_list.length>0}}'>
+              <text wx:for="{{label_list}}">{{item.content}}</text>
+            </block>
+            <block wx:if='{{label_list.length==0}}'>
+              暂无标签
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <form class="flex-row bar-bottom" bindsubmit='submit' report-submit='true'>
+    <view class="flex-grow-0 flex-row" style='background-color: white;line-height: 110rpx;width: 202px;font-size: 18pt;padding-left: 10rpx;color: #1BB4FD;'>
+      合计：{{price_cur}}
+    </view>
+    <view class="flex-grow-1 flex-row" style='position: absolute;right: 0;top: 0;width: 43%;height: 45px;border-radius: 0px;background-color:#1BB4FD;'>
+      <button form-type='submit' class="flex-grow-1 flex-y-center flex-x-center buy-now">立即下单</button>
+    </view>
+  </form>
+
+</view>
+
+
+<include src="/commons/goods/specifications"></include>

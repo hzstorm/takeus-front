@@ -1,0 +1,52 @@
+
+page{
+  background-color: white
+}
+
+.search-block {
+
+  padding: 0px 24rpx 10rpx 24rpx;
+  display: block;
+}
+
+.search-block navigator {
+  display: block;
+  background: #F2F2F2;
+  text-align: left;
+  height: 61rpx;
+  line-height: 57rpx;
+  /* border:1rpx solid #e3e3e3; */
+  border-radius: 6rpx;
+  color: #BBBBBB;
+  padding: 0 20rpx;
+  font-size: 10pt;
+  border-left: solid #e3e3e3 1rpx;
+}
+
+.search-block navigator image {
+  height: 24rpx;
+  width: 24rpx;
+}
+
+.nav-icon-list {
+  background: #fff;
+  flex-wrap: wrap;
+  border-top: 1rpx solid #e3e3e3;
+}
+
+.search-block navigator text, .search-block navigator image {
+  vertical-align: middle;
+  margin: 0 5rpx;
+}
+
+
+.weui-cell{
+      padding: 10px 15px;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}

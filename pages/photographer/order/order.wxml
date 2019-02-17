@@ -1,0 +1,186 @@
+<!--order.wxml-->
+<navigator class="return-index-btn" open-type="redirect" wx:if="{{show_index}}" url="/pages/index/index">
+  <image src="/images/nav-icon-index.png" style="width: 50rpx;height: 50rpx"></image>
+</navigator>
+<view class="flex-row tab-bar">
+  <view class="flex-grow-1">
+    <navigator class="{{status==0?'active':''}}" url="/pages/photographer/order/order?status=0" open-type="redirect">
+      <text>待付款</text>
+    </navigator>
+  </view>
+  <view class="flex-grow-1">
+    <navigator class="{{status==1?'active':''}}" url="/pages/photographer/order/order?status=1" open-type="redirect">
+      <text>待接单</text>
+    </navigator>
+  </view>
+  <view class="flex-grow-1">
+    <navigator class="{{status==2?'active':''}}" url="/pages/photographer/order/order?status=2" open-type="redirect">
+      <text>服务中</text>
+    </navigator>
+  </view>
+  <view class="flex-grow-1">
+    <navigator class="{{status==3?'active':''}}" url="/pages/photographer/order/order?status=3" open-type="redirect">
+      <text>可下载</text>
+    </navigator>
+  </view>
+  <view class="flex-grow-1">
+    <navigator class="{{status==4?'active':''}}" url="/pages/photographer/order/order?status=4" open-type="redirect">
+      <text>已完成</text>
+    </navigator>
+  </view>
+</view>
+<view class="order-list">
+  <view wx:if="{{show_no_data_tip}}" class="no-data-tip">暂无相关订单</view>
+  <view class="order-item" wx:for="{{order_list}}" wx:for-item="order">
+    <navigator>
+      <view style="font-size: 9pt;margin-bottom: 12rpx;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{order.mch.name}}</view>
+      <view class="flex-row order-info">
+        <view class="flex-grow-1">订单号:{{order.order_no}} </view>
+        <view class="flex-grow-0">{{order.addtime}}</view>
+      </view>
+      <view class="goods-list">
+        <view class="goods-item flex-row">
+          <view class="flex-grow-0" style="overflow: visible">
+            <image class="goods-pic" mode="aspectFill" src="{{order.pic_url}}" />
+          </view>
+          <view class="flex-grow-1 flex-col">
+            <view class="flex-grow-1">
+              <view class="goods-name">{{order.contact_name}}</view>
+
+ <view class="attr-list">
+                <view class="attr-item">
+                  需求类型：{{order.r_name}}
+                </view>
+              </view>
+
+              <view class="attr-list">
+                <view class="attr-item">
+                  照片数量：{{order.number*order.amount}} 张
+                </view>
+              </view>
+              <view class="attr-list">
+                <view class="attr-item">
+                  拍摄时长：{{order.minutes*order.amount}} 分钟
+                </view>
+              </view>
+
+
+
+
+              <view class="attr-list">
+                <view class="attr-item">
+                  联系电话：{{order.mobile}}
+                </view>
+              </view>
+              <view class="attr-list">
+                <view class="attr-item">
+                  联系地址：{{order.contact_address}}
+                </view>
+              </view>
+              <view class="attr-list">
+                <view class="attr-item">
+                  需求类型：{{order.r_name}}
+                </view>
+              </view>
+              <view class="attr-list">
+                <view class="attr-item">
+                  时间：{{order.datetime}}
+                </view>
+              </view>
+              <view class="attr-list" wx:if="{{order.address!=''&&order.address!=0}}">
+                <view class="attr-item">
+                  地点：{{order.address}}
+                </view>
+              </view>
+              <view class="attr-list" wx:if="{{order.add_price!=0}}">
+                <view class="attr-item" style='color: #1BB4FD;'>
+                  增加费用：{{order.add_price}} (
+                  <text wx:if="{{order.add_status==0}}">未支付</text>
+                  <text wx:if="{{order.add_status==1}}">已支付</text>)
+                </view>
+              </view>
+              <view class="attr-list">
+                <view class="attr-item">
+                  作品状态：
+                  <text style='background-color: #1BB4FD;color: white;border-radius: 10rpx;padding: 0 5px;wxcs_style_padding: 0 10rpx;' wx:if="{{order.is_upload==0}}">未上传</text>
+                  <text style='background-color: #2BA246;color: white;border-radius: 10rpx;padding: 0 5px;wxcs_style_padding: 0 10rpx;' wx:if="{{order.is_upload==1}}">已上传</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </navigator>
+    <view class="flex-row">
+      <view class="flex-grow-1 flex-y-center">
+        <block wx:if="{{status==4}}">
+          <block wx:if="{{order.refund_type==1}}">
+            退货退款：
+            <text style="color: #ff4544">￥{{order.refund_price}}</text>
+          </block>
+          <block wx:if="{{order.refund_type==2}}">
+            换货
+          </block>
+        </block>
+        <block wx:else>合计：
+          <text style='color:#1BB4FD'>￥{{order.pay_price}}</text> </block>
+      </view>
+      <view class="flex-grow-0 flex-y-center flex-row">
+        <block wx:if="{{status==4}}">
+          <view wx:if="{{order.refund_status==0}}">等待处理</view>
+          <view style="color: #36ba75" wx:if="{{order.refund_status==1}}">已同意并退款</view>
+          <view style="color: #36ba75" wx:if="{{order.refund_status==2}}">已同意换货</view>
+
+          <block wx:if="{{order.refund_status==3}}">
+            <view style="color: #ff4544" wx:if="{{order.refund_type==1}}">已拒绝退货退款</view>
+            <view style="color: #ff4544" wx:if="{{order.refund_type==2}}">已拒绝换货</view>
+          </block>
+        </block>
+        <block wx:else>
+          <view class="flex-grow-1" wx:if="{{order.is_send==0}}">
+            <text wx:if="{{order.apply_delete==1}}">取消申请中</text>
+            <button wx:else class="order-option-btn" bindtap="orderRevoke" data-id="{{order.order_id}}">取消
+            </button>
+          </view>
+
+
+          <view class="flex-grow-1" wx:if="{{order.is_pay==1 && order.status == 2}}">
+            <button class="order-option-btn" bindtap='uploadImg' data-id="{{order.id}}" data-index='{{index}}'>上传作品</button>
+          </view>
+          <view class="flex-grow-1" wx:if="{{order.is_pay==1 && order.status ==3}}">
+            <button class="order-option-btn" bindtap='uploadImg' data-id="{{order.id}}" data-index='{{index}}'>继续上传</button>
+          </view>
+
+          <view class="flex-grow-1" wx:if="{{order.is_pay==1 && order.status == 2}}">
+            <button class="order-option-btn" bindtap="addPrice" data-id="{{order.id}}" data-index='{{index}}'>增加费用</button>
+          </view>
+          <view class="flex-grow-1" wx:if="{{order.is_pay==1 && order.status == 1}}">
+            <button class="order-option-btn" bindtap="access_order" data-id="{{order.id}}" data-index='{{index}}'>接单</button>
+          </view>
+
+        </block>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+
+<!-- 活动弹窗 -->
+<view wx:if="{{show}}">
+  <view class="act-modal">
+    <view class="act-modal-bg"></view>
+    <view class="act-modal-pic flex-y-center flex-x-center">
+      <view style='background-color: white;width: 69%;height: 144px;text-align: center;border-radius: 5px;'>
+        <view style='font-size: 12pt;margin-top: 13px;'>增加服务费</view>
+
+        <input type='number' bindinput='priceInput' placeholder='请输入增加金额' style='width: 50%;margin: 0 auto;border-bottom: solid #1BB4FD 0.5px;wxcs_style_border-bottom: solid #1BB4FD 1rpx;margin-top: 17px;'></input>
+        <view style='display: flex;width: 60%;margin: 0 auto;'>
+          <button bindtap="closeActModal" style='margin-top: 10px;width: 60px;background-color: #E5BE56;margin-top: 13px;color: white;border-radius: 32px;font-size: 9pt;'>取消</button>
+
+          <button bindtap='addSubmit' style='margin-top: 10px;width: 60px;background-color: #1BB4FD;margin-top: 13px;color: white;border-radius: 32px;font-size: 9pt;'>提交</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

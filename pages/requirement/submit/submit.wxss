@@ -1,0 +1,102 @@
+/* pages/requirement/submit/submit.wxss */
+
+.address-picker {
+  background: #fff;
+  padding: 32rpx 24rpx;
+  margin-bottom: 20rpx;
+  border-top: 1rpx solid #e3e3e3;
+  border-bottom: 1rpx solid #e3e3e3;
+}
+
+.goods-pic {
+  width: 156rpx;
+  height: 156rpx;
+  margin-right: 20rpx;
+}
+
+.goods-name {
+  margin-bottom: 10rpx;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.attr-list, .cart-item .num {
+  font-size: 9pt;
+  color: #888;
+}
+
+
+.coupon-picker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+    background: #fff;
+    border-top: 1rpx solid #e3e3e3;
+}
+
+.coupon-list {
+    padding: 34rpx;
+}
+
+.coupon-list .coupon-item {
+    height: 152rpx;
+    width: 682rpx;
+    position: relative;
+    margin-bottom: 24rpx;
+}
+
+.coupon-list .coupon-item.coupon-status-1 .coupon-right,
+.coupon-list .coupon-item.coupon-status-2 .coupon-right {
+    color: rgba(0, 0, 0, 0.35) !important;
+}
+
+.coupon-list .coupon-item .coupon-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.coupon-list .coupon-item .coupon-status-icon {
+    width: 140rpx;
+    height: 98rpx;
+    position: absolute;
+    top: 0;
+    right: 8rpx;
+    z-index: 1;
+}
+
+.coupon-list .coupon-item .coupon-left {
+    color: #fff;
+    width: 202rpx;
+}
+
+.coupon-list .coupon-item .coupon-right {
+    padding: 20rpx 10rpx;
+}
+
+.attr-list .attr-item {
+  display: inline-block;
+  margin-right: 36rpx;
+}
+
+.attr-list .attr-item:last-child {
+  margin-right: 0;
+}
+
+.pay-bar {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  background-color: #fff;
+  height: 50px;
+  width: 100%;
+  line-height: 50px;
+}

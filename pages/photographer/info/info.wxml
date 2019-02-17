@@ -1,0 +1,75 @@
+<view class='title' hidden='true'>个人信息</view>
+<image src='{{photographer.header_url}}' mode="widthFix" style='width: 100%;'></image>
+<view style='padding: 0 10px;wxcs_style_padding: 0 10px;margin-bottom: 100px;'>
+
+  <view style='font-size: 17pt;' class='bottom-line'>{{photographer.name}}</view>
+
+  <view style='display:flex' class='info'>
+
+    <view class='key'>性别</view>
+    <text>：</text>
+    <view class="val">{{photographer.sex==0?'男':'女'}}</view>
+
+  </view>
+  <view style='display:flex' class='info'>
+
+    <view class='key'>地区</view>
+    <text>：</text>
+    <view class='val'>{{photographer.address}}</view>
+
+  </view>
+  <view style='display:flex' class='info'>
+
+    <view class='key'>审核状态</view>
+    <text>：</text>
+    <view class='val'>{{photographer.status==0?'审核中':'通过'}}</view>
+  </view>
+   <view style='display:flex' class='info'>
+
+    <view class='key'>联系电话</view>
+    <text>：</text>
+    <view class='val'>{{photographer.mobile}}</view>
+  </view>
+
+  <view style='display: flex;' class='info bottom-line'>
+
+    <view class='key'>个人简介</view>
+    <text>：</text>
+    <view class='val'>{{photographer.details}}</view>
+
+  </view>
+  <view style='display:flex' class='info'>
+    <view class='key'>个人标签</view>
+    <text>：</text>
+    <view class='val'>
+      <block wx:if='{{label_list.length>0}}'>
+        <text wx:for="{{label_list}}">{{item.content}}</text>
+      </block>
+
+      <block wx:if='{{label_list.length<10}}'>
+        <view style='background-color: #ff4455;border-radius: 10px;width: 50px;text-align: center;font-size: 9pt;color: white;' bindtap='addLabel'>添加</view>
+      </block>
+    </view>
+  </view>
+
+</view>
+<!-- 活动弹窗 -->
+<view wx:if="{{show}}">
+  <view class="act-modal">
+    <view class="act-modal-bg"></view>
+    <view class="act-modal-pic flex-y-center flex-x-center">
+      <view style='background-color: white;width: 69%;height: 144px;text-align: center;border-radius: 5px;'>
+        <view style='font-size: 12pt;margin-top: 13px;'>新建标签</view>
+
+        <input type='text' bindinput='labelInput' placeholder='请输入标签内容' style='width: 50%;margin: 0 auto;border-bottom: solid #1BB4FD 0.5px;wxcs_style_border-bottom: solid #1BB4FD 1rpx;margin-top: 17px;'></input>
+        <view style='display: flex;width: 60%;margin: 0 auto;'>
+          <button bindtap="closeActModal" style='margin-top: 10px;width: 60px;background-color: #E5BE56;margin-top: 13px;color: white;border-radius: 32px;font-size: 9pt;'>取消</button>
+
+          <button bindtap='submit' style='margin-top: 10px;width: 60px;background-color: #1BB4FD;margin-top: 13px;color: white;border-radius: 32px;font-size: 9pt;'>提交</button>
+
+        </view>
+
+      </view>
+    </view>
+  </view>
+</view>

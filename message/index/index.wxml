@@ -1,0 +1,45 @@
+<view class="body after-navber">
+
+  <view class="search-block" hidden='true'>
+    <navigator>
+      <image src="/images/icon-search.png" />
+      <text>搜点什么</text>
+    </navigator>
+  </view>
+
+  <view class='page__hd'>
+    <view class='weui-cells'>
+      <navigator class='weui-cell' url="/pages/requirement/order/order?status=2">
+        <view style='position: relative;margin-right: 10px;'>
+          <!-- <image src='/message/images/xj.png' style='width: 50px;display: block;height:50px'></image> -->
+       <image src='/images/photo_blue.png' style='width: 50px;display: block;height:50px'></image>
+        </view>
+        <view class='weui-cell__bd'>
+          <view style='font-size: 13pt;'>摄影订单消息</view>
+          <view style='font-size: 9pt;color: #888888;'>{{order_msg.detail}} </view>
+        </view>
+        <view class="weui-badge" wx:if="{{order_msg.count}}">{{order_msg.count}}</view>
+      </navigator>
+      <navigator class='weui-cell' url='/pages/topic-list/topic-list' style='border-bottom: solid #f0f0f0 0.5px;wxcs_style_border-bottom: solid #f0f0f0 1rpx;border-top: solid #f0f0f0 0.5px;wxcs_style_border-top: solid #f0f0f0 1rpx;'>
+        <view style='position: relative;margin-right: 10px;'>
+          <!-- <image src='/message/images/liwu.png' style='width: 50px;display: block;height:50px'></image> -->
+              <image src='/images/liwu_blue.png' style='width: 50px;display: block;height:50px'></image>
+        </view>
+        <view class='weui-cell__bd'>
+          <view style='font-size: 13pt;'>系统消息</view>
+          <view style='font-size: 9pt;color: #888888;'>{{topic_msg.detail}} </view>
+        </view>
+      </navigator>
+      <navigator class='weui-cell' url='/pages/coupon-list/coupon-list' style='border-bottom: solid #f0f0f0 0.5px;wxcs_style_border-bottom: solid #f0f0f0 1rpx;' wx:if="{{coupon_msg.count}}">
+        <view style='position: relative;margin-right: 10px;'>
+          <!-- <image src='/message/images/liwu.png' style='width: 50px;display: block;height:50px'></image> -->
+               <image src='/images/msg_blue.png' style='width: 50px;display: block;height:50px'></image>
+        </view>
+        <view class='weui-cell__bd'>
+          <view style='font-size: 13pt;'>优惠券</view>
+          <view style='font-size: 9pt;color: #FF4455;'>您有未领取的优惠券待领取哦，快去看看吧</view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,94 @@
+<!-- 加载公共扩展 -->
+<include src="/commons/extension/extension" />
+<!-- 加载底部导航栏（按需） -->
+<include src="/commons/navbar/navbar" />
+<view class="after-navber">
+  <!-- 页面内容 -->
+  <view class="header">
+    <view style="text-align: center;margin-bottom: 40rpx">余额（元）</view>
+    <view style="text-align: center;font-size: 19pt;font-weight: bold;line-height: 1;margin-bottom: 64rpx">
+      {{money}}
+    </view>
+    <view class="flex flex-row">
+      <view class="flex-grow-1 data-col">
+        <view>今日总订单数</view>
+        <view>{{data3}}</view>
+      </view>
+      <view class="flex-grow-1 data-col">
+        <view>今日付款订单数</view>
+        <view>{{data2}}</view>
+      </view>
+      <view class="flex-grow-1 data-col">
+        <view>今日付款总金额</view>
+        <view>{{data1}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="flex flex-row" wx:if="{{data5}}" style="height: 64rpx;background: #fff;color: #ff5003;font-size: 10pt; padding: 0 24rpx;margin-bottom: 24rpx">
+    <view class="flex-grow-0 flex-y-center">
+      <image src="/mch/images/notice.png" style="width: 34rpx;height: 34rpx;margin-right: 20rpx"></image>
+    </view>
+    <view class="flex-grow-1 flex-y-center">{{data5}}</view>
+  </view>
+  <view class="flex flex-row menu-list" style="margin-bottom: 24rpx">
+    <view class="flex-grow-0 menu-item">
+      <form bindsubmit="navigatorSubmit" report-submit="true">
+        <input name="url" value="/pages/photographer/order/order?status=1" style="display: none" />
+        <button formType="submit" class="block-button">
+          <image src="/images/menu-3.png"></image>
+          <view>订单管理</view>
+        </button>
+      </form>
+    </view>
+
+    <view class="flex-grow-0 menu-item">
+      <form bindsubmit="navigatorSubmit" report-submit="true">
+        <input name="url" value="/pages/photographer/message/index/index" style="display: none" />
+        <button formType="submit" class="block-button">
+          <image src="/images/menu-8.png"></image>
+          <view>消息管理</view>
+        </button>
+      </form>
+    </view>
+    <view class="flex-grow-0 menu-item">
+      <form bindsubmit="navigatorSubmit" report-submit="true">
+        <input name="url" value="/pages/photographer/money/cash" style="display: none" />
+        <button formType="submit" class="block-button">
+          <image src="/images/menu-4.png"></image>
+          <view>余额提现</view>
+        </button>
+      </form>
+    </view>
+    <view class="flex-grow-0 menu-item">
+      <form bindsubmit="navigatorSubmit" report-submit="true">
+        <input name="url" value="/pages/photographer/money/cash-detail" style="display: none" />
+        <button formType="submit" class="block-button">
+          <image src="/images/menu-4.png"></image>
+          <view>提现明细</view>
+        </button>
+      </form>
+    </view>
+    <view class="flex-grow-0 menu-item">
+      <form bindsubmit="navigatorSubmit" report-submit="true">
+        <input name="url" value="/pages/photographer/money/index" style="display: none" />
+        <button formType="submit" class="block-button">
+          <image src="/images/menu-5.png"></image>
+          <view>进账明细</view>
+        </button>
+      </form>
+    </view>
+    <view class="flex-grow-0 menu-item">
+      <form bindsubmit="navigatorSubmit" report-submit="true">
+        <input name="url" value="/pages/photographer/info/info" style="display: none" />
+        <button formType="submit" class="block-button">
+          <image src="/images/menu-10.png"></image>
+          <view>认证信息</view>
+        </button>
+      </form>
+    </view>
+
+
+  </view>
+
+
+</view>

@@ -1,0 +1,9 @@
+<!--pages/integral-mall/shuoming/index.wxml-->
+ <block wx:for="{{integral_shuoming}}" wx:for-item="title"> 
+    <view style="margin:36rpx 24rpx 0rpx 24rpx;">
+         <view class="title">{{title.title}}</view> 
+         <block wx:for="{{title.content}}"> 
+            <view style="color:#353535;">{{item}}</view>
+         </block> 
+    </view>
+ </block> 
